@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalabel=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>优秀去也</title>
+    <link rel="stylesheet" href="./assets/css/aui.css" />
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        .g-flexview{
+            height: auto !important;
+            background: #ffffff;
+            flex-direction: column;
+            margin: 0 auto;
+            height: 100% !important;
+            max-width: 500px;
+            min-width: 300px;
+        }
+
+        /**
+         * vue 去除闪屏
+         * v-if v-show 首次加载 闪屏 解决
+         */
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app" class="g-flexview" v-cloak>
+
+                                
+
+    </div>
+</body>
+</html>
+<!--  vue  -->
+<script type="text/javascript" src="./assets/js/vue.js"></script>
+<script type="text/javascript" src="./assets/js/axios.min.js"></script>
+
+<!--动画库-->
+<script type="text/javascript" src="./assets/js/anime.min.js"></script>
+
+<!--时间格式化-->
+<script type="text/javascript" src="./assets/js/moment.js"></script>
+
+<!--强大工具库-->
+<script src="./assets/js/lodash.min.js"></script>
+
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        mounted() {
+            this.initView();
+        },
+        methods: {
+            initView(){
+
+            },
+
+        }
+    });
+
+</script>

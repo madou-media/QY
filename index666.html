@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalabel=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伯乐</title>
+    <link rel="stylesheet" href="./assets/css/aui.css" />
+    <link rel="stylesheet" href="./assets/css/bole.css" />
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        .g-flexview{
+            height: auto !important;
+            background: #ffffff;
+            flex-direction: column;
+            margin: 0 auto;
+            height: 100% !important;
+            max-width: 500px;
+            min-width: 300px;
+        }
+
+        /**
+         * vue 去除闪屏
+         * v-if v-show 首次加载 闪屏 解决
+         */
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app" class="g-flexview" v-cloak>
+
+        <!-- header begin -->
+        <header class="header">
+
+            <!-- tab begin -->
+            <section class="aui-tab" id="tab">
+                <div class="aui-tab-item" v-for="(item,index) in tabList"
+                     :class="index==tabIndex ? 'aui-active' : null "
+                     @click="tabIndex=index"
+                     v-text="item"
+                > -- </div>
+            </section>
+            <!-- tab end -->
+
+            <section class="aui-row">
+                <div class="aui-col-xs-6">
+                    <i class="aui-iconfont aui-icon-home"></i>
+                    <div class="aui-grid-label">总消费</div>
+                    <span ref="totalConsume">1900</span>
+                </div>
+                <div class="aui-col-xs-6">
+                    <i class="aui-iconfont aui-icon-gear"></i>
+                    <div class="aui-grid-label">总业绩</div>
+                    <span ref="totalKpi">20000</span>
+                </div>
+            </section>
+
+        </header>
+        <!-- header end -->
+
+
+        <div class="list">
+            <!-- header begin -->
+            <section class="aui-row list-title">
+                
+                <!-- item begin -->
+                <aside :class=" 'aui-col-xs-'+12/dataList.title.length "
+                    @click="dataList.clickTouch(index)"
+                    v-for="(item,index) in dataList.title">
+
+                    <div class="aui-grid-label"
+                         :class=" index == dataList.orderIndex ? 'active' : null ">
+                         
+                        <span v-text="index<=0 ? tabList[tabIndex]+item : item"></span>
+
+                        <!-- order begin -->
+                        <span v-if="index == dataList.orderIndex && index>0">
+                            <i v-show="dataList.order=='desc' ">▼</i>
+                            <i v-show="dataList.order=='asc' ">▲</i>
+                        </span>
+                        <span v-show="index>0" v-else>
+                            <i>▼</i>
+                        </span>
+                        <!-- order end -->
+
+                    </div>
+
+                </aside>
+                <!-- item end -->
+
+            </section>
+            <!-- header end -->
+
+            <!--      in orderBy(users, 'name')      -->
+            <ul class="list-item" v-show="dataList.data">
+
+                <li class="aui-row" v-for="(item,index) in dataList.data">
+                    <div class="aui-col-xs-8">
+                        <img :src="item.avatar" class="aui-img-round">
+                        <section class="list-info">
+                            <div class="info-title">
+                                <label for="" v-text="item.nickname"></label>
+                                <span v-text="hideMobile(item.mobile)">185****2125</span>
+                            </div>
+                            <div class="info-item">
+                                <div class="">
+                                    消费: <span v-text="item.consume">299</span>
+                                </div>
+                                <div class="">
+                                    业绩: <span v-text="item.kpi">299</span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="aui-col-xs-4" v-bind:html="item.createtime|format">
+                        {{item.createtime|format}}
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+                                
+        
+
+    </div>
+</body>
+</html>
+<!--  vue  -->
+<script type="text/javascript" src="./assets/js/vue.js"></script>
+<script type="text/javascript" src="./assets/js/axios.min.js"></script>
+
+<!--动画库-->
+<script type="text/javascript" src="./assets/js/anime.min.js"></script>
+
+<!--时间格式化-->
+<script type="text/javascript" src="./assets/js/moment.js"></script>
+
+<!--强大工具库-->
+<script src="./assets/js/lodash.min.js"></script>
+
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            baseUrl: "https://nei.netease.com/api/apimock-v2/419f728a8bab92b904b39b4357fada2a",
+            params:{
+                appid:'123',
+                sign:'123',
+                openid: "{$member['openid']}",
+            },
+            tabList: [ '酒友', '酒客'],
+            tabIndex: 0,
+            //列表
+            dataList:{
+                title: ['列表','按消费','按业绩'],
+                order: 'desc',   //排序方式
+                orderIndex: 1,  //排序标签的key
+                clickTouch: function(index){
+                    console.log(index);
+                },
+                data:[]
+            }
+        },
+        mounted() {
+            // 设置排序点击
+            this.dataList.clickTouch = this.Orderclick;
+            this.initView();
+        },
+        methods: {
+            initView(){
+                this.getList();
+                //添加问题滚动动画
+                this.anime(this.$refs.totalConsume,5000);
+                this.anime(this.$refs.totalKpi,5000);
+            },
+            /**
+             *  获取列表
+             */
+            getList(type=0){
+                var _this = this;
+                let param = {
+                    params:{
+                        appid:'123',
+                        sign:'123',
+                        openid: "",
+                        type: type,
+                    }
+                };
+                let url = this.baseUrl +'/getBole';
+                axios.get(url,param).then( (res) => {
+                    if (res.data.code == 200) {
+                        // var last_page = res.data.data.last_page;
+                        _this.dataList.data = res.data.data.data.data;
+                        console.log('用户列表',res.data);
+
+                        //默认消费排序
+                        _this.dataList.data = _.orderBy(_this.dataList.data, ['consume'], ['desc']);
+                    } else {
+                        console.log(res.data.msg);
+                    }
+                })
+            },
+            /**
+             *  设置排序点击
+             */
+            Orderclick(index){
+                //判断是否点击第一个
+                if(index == 0){
+                    return false;
+                }
+                //更换标签状态
+                if(this.dataList.orderIndex != index){
+                    this.dataList.orderIndex = index;
+                    this.dataList.order = 'desc';
+                }else{
+                    this.dataList.order = this.dataList.order == 'desc' ? 'asc' : 'desc';
+                }
+
+                var orderByName = 'consume';
+                switch(index) {
+                    case 1:
+                        orderByName = 'consume';
+                        break;
+                    case 2:
+                        orderByName = 'kpi';
+                        break;
+                    default:
+                }
+                //排序
+                this.dataList.data = _.orderBy(this.dataList.data, [orderByName], [ this.dataList.order ]);
+            },
+            /**
+             * 数字滚动动画
+             * @param num
+             */
+            anime(el,num,animate='linear'){
+                anime({
+                    targets: el,
+                    innerHTML: [0, num],
+                    round: 100,
+                    easing: animate
+                });
+            },
+            /*
+            * 隐藏手机号中间4位
+            * tel 手机号
+            * */
+            hideMobile(tel='13122223333'){
+                return tel.replace(/^(\d{3})\d{4}(\d{4})$/, "$1****$2");
+            },
+            /*
+            * 判断是否为空
+            * obj 要判断的 变量 或者 对象
+            * */
+            isEmpty(obj){
+                return (typeof obj == "undefined" || obj == null || obj == "") ? true : false;
+            },
+            /**
+             * 保留小数
+             * @param val
+             * @returns {string}
+             */
+            toFloat(val=2170.7999999999997,num=1){
+                return parseFloat(val).toFixed(num);
+            }
+
+        },
+        filters:{
+            orderBy(value){
+                console.log(value);
+            },
+            format(val,format='YYYY-MM-DD HH:SS') {
+                return moment(val*1000).format(format);
+            }
+        },
+        watch:{
+            tabIndex(newVal,oldVal){
+                console.log('新的值',newVal);
+                if(newVal != oldVal){
+                    this.anime(this.$refs.totalConsume,5000);
+                    this.anime(this.$refs.totalKpi,5000);
+                }
+            }
+        }
+    });
+
+</script>
