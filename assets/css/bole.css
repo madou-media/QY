@@ -1,0 +1,149 @@
+body{
+    min-height: 100%;
+    background: #F7F7F7;
+    overflow-x: hidden;
+}
+header.header{
+    background: #F01F3C;
+    width: 100%;
+    min-height: 2rem;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+.aui-tab{
+    padding: 2% 15%;
+    justify-content: center;
+    background: #F01F3C;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+.aui-tab-item{
+    width: auto;
+    padding: 0 1.5rem;
+    height: 1.7rem;
+    line-height: 1.7rem;
+
+    background: #F01F3C;
+    color: #FAFDF3;
+    border: 2px solid #DE1C34;
+}
+.aui-tab-item:nth-child(1){
+    border-right: none;
+    border-radius: 0.2rem 0 0 0.2rem;
+}
+.aui-tab-item:last-child{
+    border-radius: 0 0.2rem 0.2rem 0;
+}
+.aui-tab-item.aui-active{
+    transition: background 1s;
+    color: #484848;
+    border: 0px solid #E8DDE0;
+    background: #eeeeee;
+    border-bottom-color: #E8DDE0;
+}
+.header>.aui-row{
+    text-align: center;
+    padding: 2% 5%;
+    color: #ffffff;
+    padding-bottom: 1.5rem;
+}
+.header>.aui-row [class^=aui-col-]{
+    font-size: 0.6rem;
+    position: relative !important;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.header>.aui-row [class^=aui-col-]:nth-child(1){
+    border-right: 1px solid #f5f5f5;
+}
+.header>.aui-row [class^=aui-col-] .aui-grid-label{
+    margin: 0.2rem 0;
+    width: 100%;
+}
+.header>.aui-row [class^=aui-col-] i{
+
+}
+.header>.aui-row [class^=aui-col-] span{
+    position: absolute;
+    bottom: -1.5rem;
+    z-index: 1;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.list{
+    background: #ffffff;
+    padding: 0.5rem 0;
+}
+.list .list-title{
+    padding: 0.4rem 0;
+    padding-bottom: 0.3rem;
+    border: 1px solid #FEF8FA;
+    border-left: none;
+    border-right: none;
+}
+.list .list-title [class^=aui-col-]{
+    text-align: center;
+}
+.list .list-title [class^=aui-col-]:nth-child(1){
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.list .list-title [class^=aui-col-] .active{
+    color: #F01F3C;
+}
+
+.list .list-item{
+    padding: 0.4rem 0.5rem;
+}
+.list .list-item .aui-row{
+    padding: 0.3rem 0;
+    padding-top: 0.5rem;
+    border-bottom: 1px solid #FEF8FA;
+}
+.list .list-item .aui-row [class^=aui-col-]{
+    display: flex;
+}
+.list .list-item .aui-row [class^=aui-col-]:last-child{
+    font-size: 0.6rem;
+    color: #A7A7A7;
+    text-align: center;
+    display: block;
+}
+.list .list-item .aui-row [class^=aui-col-] img{
+    height: 2.4rem;
+}
+.list .list-item .aui-row [class^=aui-col-] .list-info{
+    width: 100%;
+    padding-left: 0.5rem;
+}
+.list .list-item .aui-row [class^=aui-col-] .list-info .info-title{
+    font-weight: bold !important;
+    font-size: 0.8rem !important;
+}
+.list .list-item .aui-row [class^=aui-col-] .list-info .info-title>span{
+    font-weight: normal;
+    font-size: 0.7rem;
+}
+.list .list-item .aui-row [class^=aui-col-] .list-info .info-item{
+    display: flex;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+.list .list-item .aui-row [class^=aui-col-] .list-info .info-item>div{
+    width: 50%;
+    min-height: 1rem;
+    display: flex;
+    font-size: 0.6rem;
+    color: #A7A7A7;
+    position: relative;
+}
+.list .list-item .aui-row [class^=aui-col-] .list-info .info-item>div>span{
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #333333;
+    padding-left: 0.3rem;
+    position: relative;
+    top: -0.2rem;
+}
