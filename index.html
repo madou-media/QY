@@ -60,24 +60,35 @@
 					
 		            <li class="aui-list-item" v-for="(item,key) in list">
 		                <div class="aui-media-list-item-inner">
-		                    <div class="aui-list-item-media">
-		                        <img :src="item.logo" width="100px" height="100px">
-		                    </div>
 		                    <div class="aui-list-item-inner">
 		                        <div class="aui-list-item-text">
-		                            <div class="aui-list-item-title">({{key+1}}号){{item.name}}</div>
+		                            <div class="aui-list-item-title  aui-list-header">{{key+1}}、{{item.name}}</div>
 		                        </div>
-		                        <div class="aui-list-item-text">
+								<div class="aui-label aui-label-info">主做范畴</div>
+								<div class="aui-list-item-text">
+								   {{item.remd}}
+								</div>
+								<div class="aui-label aui-label-warning">优秀指数</div>
+								<div class="aui-label aui-label-danger" >{{item.level}}</div>
+								<br/>
+
+								<div class="aui-label aui-label-danger" >上榜理由</div>
+		                        <div class="aui-list-item-text" v-show="key == index">
 		                            {{item.info}}
 		                        </div>
+								<div @click="zk(key)" style="text-align: center;color: red;" >
+									<span v-if="key == index">收缩▲</span>
+									<span v-else>展开▼</span>
+								</div>
 
 		                    </div>
 		                </div>
 		                <div class="aui-info" style="padding-top:0">
 		                    <div class="aui-info-item">
+								<div class="aui-label aui-label-danger" >地址</div>
 								<span class="aui-margin-l-5">{{item.addrs}}</span>
 		                        </div>
-		                    <div class="aui-info-item">企业信息</div>
+		                    <div class="aui-info-item" @click="urls(item.urls)">企业信息</div>
 		                </div>
 		            </li>
 		        </ul>
@@ -104,9 +115,10 @@
     var app = new Vue({
         el: '#app',
         data: {
-			 baseUrl: "https://madou-media.github.io/QY/api",
+			baseUrl: "https://madou-media.github.io/QY/api",
 			list: [],
-			info: {}
+			info: {},
+			index: 0
         },
 		created() {
 			var _this = this;
@@ -123,9 +135,18 @@
 			})
 		},
         methods: {
-            initView(){
-				console.log("222222222");
+            zk(key){
+				// this.index == key ? this.index = null : this.index = key;
+				if(this.index == key){
+					 this.index = null;
+				}else{
+					 this.index = key;
+				}
             },
+			urls(url){
+				console.log(url);
+				window.location = url;
+			},
 
         }
     });
