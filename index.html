@@ -105,6 +105,7 @@
     var app = new Vue({
         el: '#app',
         data: {
+			 baseUrl: "https://madou-media.github.io/QY/api",
 
         },
 		created() {
@@ -114,7 +115,7 @@
 			        appid:'123',
 			    }
 			};
-			let url = './api/QingDao.json';
+			let url = this.baseUrl + '/QingDao.json';
 			axios.get(url,param).then( (res) => {
 				console.log(res);
 			})
