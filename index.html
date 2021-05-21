@@ -58,14 +58,15 @@
 		                    </div>
 		                </div>
 		            </li>
-		            <li class="aui-list-item" v-for="item in 10">
+					
+		            <li class="aui-list-item" v-for="item in 10" @click="initView()">
 		                <div class="aui-media-list-item-inner">
 		                    <div class="aui-list-item-media">
 		                        <img src="./static/logo.png">
 		                    </div>
 		                    <div class="aui-list-item-inner">
 		                        <div class="aui-list-item-text">
-		                            <div class="aui-list-item-title">带有媒体的列表二</div>
+		                            <div class="aui-list-item-title">青岛实瑞科技</div>
 		                            <div class="aui-list-item-right">08:00</div>
 		                        </div>
 		                        <div class="aui-list-item-text">
@@ -106,12 +107,21 @@
         data: {
 
         },
-        mounted() {
-            this.initView();
-        },
+		created() {
+			var _this = this;
+			let param = {
+			    params:{
+			        appid:'123',
+			    }
+			};
+			let url = './api/QingDao.json';
+			axios.get(url,param).then( (res) => {
+				console.log(res);
+			})
+		},
         methods: {
             initView(){
-
+				console.log("222222222");
             },
 
         }
