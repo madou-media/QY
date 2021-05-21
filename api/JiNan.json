@@ -7,7 +7,7 @@
 			"remd": "系统集成、大数据",
 			"level": "高",
 			"addrs": "高新区铭盛大厦10层1002室",
-            "info": "直便克扣员工工资,离职后扣工资,和员工打官司去的时候工资承若很好,但每个月 没有一个人能拿到全工资的,找各种理由扣工资。加班没有加班费,不允许调休!",
+            "info": "即便是克扣员工工资,离职后扣工资,和员工打官司去的时候工资承若很好,但每个月 没有一个人能拿到全工资的,找各种理由扣工资。加班没有加班费,不允许调休!",
 			"urls": "https://aiqicha.baidu.com/company_detail_82833147563110?rq=ef&pd=ee&from=ps"
 		}, 
         {
@@ -33,6 +33,22 @@
 			"addrs": "济南历下区颖秀路生产楼迪亚创业园科研楼416(青岛的公司,在济南运营)",
 		    "info": "试用期内无故辞退员工，并拒付工资和赔偿，拿着青岛市政府的投资，做剥削劳动者的事，性质非常恶劣！公司两年了一共4个员工，3个领导，一个人事，常年招人，但是就是一直稳定4个人，可见公司的性质。",
 			"urls": "https://xin.baidu.com/detail/compinfo?pid=xlTM-TogKuTwtzII9tUMQkr*1l7dR*4QgQmd&rq=ef&pd=ee&from=ps"
+		},
+		{
+			"name": "济南铭迅软件有限公司", 
+			"remd": "企业建站",
+			"level": "高",
+			"addrs": "山东省济南市历山北路黄台电子商务产业园1219",
+		    "info": "无故克扣工资,并且电脑安装监听软件,监听员工隐私",
+			"urls": "https://aiqicha.baidu.com/company_detail_29496599010437?rq=ef&pd=ee&from=ps"
+		},
+		{
+			"name": "济南卓众信息科技有限公司", 
+			"remd": "未知",
+			"level": "高",
+			"addrs": "厉下区齐国际大厦B6-16",
+		    "info": "有常加班,无加班费,克扣工资现象严重",
+			"urls": "https://aiqicha.baidu.com/company_detail_29686253096682?rq=ef&pd=ee&from=ps"
 		}
     ]
 }
