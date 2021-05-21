@@ -71,8 +71,8 @@
 								<div class="aui-label aui-label-warning">优秀指数</div>
 								<div class="aui-label aui-label-danger" >{{item.level}}</div>
 								<br/>
-
-								<div class="aui-label aui-label-danger" >上榜理由</div>
+								
+								<div class="aui-label aui-label-danger" v-show="key == index">上榜理由</div><br/>
 		                        <div class="aui-list-item-text" v-show="key == index">
 		                            {{item.info}}
 		                        </div>
@@ -145,7 +145,9 @@
             },
 			urls(url){
 				console.log(url);
-				window.location = url;
+				if(url != ""){
+					window.location = url;
+				}
 			},
 
         }
