@@ -37,7 +37,7 @@
     <div id="app" class="g-flexview" v-cloak>
 		
 		<div style="background-color: #00897B;text-align: center;height: 100px;padding-top: 50px;">
-			<span style="color: #FFFFFF;">青岛优秀企业</span>
+			<span style="color: #FFFFFF;">{{info.city}}</span>
 		</div>
 		
 		<div class="aui-content aui-margin-b-15">
@@ -49,36 +49,35 @@
 		                <div class="aui-media-list-item-inner">
 		                    <div class="aui-list-item-inner">
 		                        <div class="aui-list-item-text">
-		                            <div class="aui-list-item-title">带有媒体的列表一</div>
-		                            <div class="aui-list-item-right">08:00</div>
+		                            <div class="aui-list-item-title">友情提示:</div>
 		                        </div>
 		                        <div class="aui-list-item-text aui-ellipsis-2">
-		                            这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
+		                            {{info.tips}}
 		                        </div>
 		                    </div>
 		                </div>
 		            </li>
 					
-		            <li class="aui-list-item" v-for="item in 10" @click="initView()">
+		            <li class="aui-list-item" v-for="(item,key) in list">
 		                <div class="aui-media-list-item-inner">
 		                    <div class="aui-list-item-media">
-		                        <img src="./static/logo.png">
+		                        <img :src="item.logo" width="100px" height="100px">
 		                    </div>
 		                    <div class="aui-list-item-inner">
 		                        <div class="aui-list-item-text">
-		                            <div class="aui-list-item-title">青岛实瑞科技</div>
-		                            <div class="aui-list-item-right">08:00</div>
+		                            <div class="aui-list-item-title">({{key+1}}号){{item.name}}</div>
 		                        </div>
 		                        <div class="aui-list-item-text">
-		                            在下方我们加入了aui-info信息条
+		                            {{item.info}}
 		                        </div>
+
 		                    </div>
 		                </div>
 		                <div class="aui-info" style="padding-top:0">
 		                    <div class="aui-info-item">
-								<span class="aui-margin-l-5">匿名用户</span>
+								<span class="aui-margin-l-5">{{item.addrs}}</span>
 		                        </div>
-		                    <div class="aui-info-item">2015-07-14 10:31</div>
+		                    <div class="aui-info-item">企业信息</div>
 		                </div>
 		            </li>
 		        </ul>
@@ -106,7 +105,8 @@
         el: '#app',
         data: {
 			 baseUrl: "https://madou-media.github.io/QY/api",
-
+			list: [],
+			info: {}
         },
 		created() {
 			var _this = this;
@@ -115,9 +115,11 @@
 			        appid:'123',
 			    }
 			};
-			let url = this.baseUrl + '/QingDao.json';
+			let url = this.baseUrl + '/JiNan.json';
 			axios.get(url,param).then( (res) => {
-				console.log(res);
+				console.log(res.data);
+				_this.info = res.data;
+				_this.list = res.data.list;
 			})
 		},
         methods: {
