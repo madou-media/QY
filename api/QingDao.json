@@ -1,13 +1,22 @@
 {
-    "city": "青岛", 
+    "city": "青岛优秀企业名单", 
+	"tips":"以下青岛的公司由用户提供！",
     "list": [
         {
-            "name": "22", 
-            "info": ""
-        }, 
+            "name": "青岛云瑞实训电子信息技术有限公司", 
+			"remd": "就是做外包的,建站啥的都故",
+			"level": "高",
+			"addrs": "市北利群宇恒大厦18A",
+            "info": "想低价找大神，单双休，工资低！",
+			"urls": "https://aiqicha.baidu.com/company_detail_29505213641517?rq=ef&pd=ee&from=ps"
+		}, 
         {
-            "name": "11", 
-            "info": ""
+			"name": "青岛好茶迎客科技有限公司", 
+			"remd": "茶叶(破旧居民楼)",
+			"level": "高",
+			"addrs": "李沧区李沧公园",
+            "info": "破旧的居民楼，给你感觉就不靠谱。需要做面试题，面试官网上找的面试题，挨个问你。",
+			"urls": "https://aiqicha.baidu.com/company_detail_29391165228638"
         }
     ]
 }
